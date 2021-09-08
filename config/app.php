@@ -178,6 +178,9 @@ return [
         //spatie
         Spatie\Permission\PermissionServiceProvider::class,
 
+        //idehelper
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
     ],
 
     /*
