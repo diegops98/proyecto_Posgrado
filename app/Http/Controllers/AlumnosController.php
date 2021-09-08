@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Alumnos;
 
 class AlumnosController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-alumnos | crear-alumnos | editar-alumnos | borrar-alumnos',
+            ['only'=>['index']]);
+        $this->middleware('permission:crear-alumnos',['only'=>['create', 'store']]);
+        $this->middleware('permission:editar-alumnos',['only'=>['edit', 'update']]);
+        $this->middleware('permission:borrar-alumnos',['only'=>['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,8 @@ class AlumnosController extends Controller
      */
     public function index()
     {
-        //
+        $alum = Alumnos::paginate(5);
+        return view('alumnos.index', compact('alum'));
     }
 
     /**
@@ -23,7 +33,7 @@ class AlumnosController extends Controller
      */
     public function create()
     {
-        //
+        return view('alumnos.crear');
     }
 
     /**
@@ -34,7 +44,13 @@ class AlumnosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'titulo'=>'required',
+            'contenido'=>'required',
+            'nombre'=>'required'
+        ]);
+        Alumnos::create($request->all());
+        return redirect()->route('alumnos.index');
     }
 
     /**
@@ -54,9 +70,9 @@ class AlumnosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Alumnos $alumnos)
     {
-        //
+        return view('alumnos.editar', compact('alumnos'));
     }
 
     /**
@@ -66,9 +82,15 @@ class AlumnosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Alumnos $alumnos)
     {
-        //
+        request()->validate([
+            'titulo'=>'required',
+            'contenido'=>'required',
+            'nombre'=>'required'
+        ]);
+        $alumnos->update($request->all());
+        return redirect()->route('alumnos.index');
     }
 
     /**
@@ -77,8 +99,9 @@ class AlumnosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Alumnos $alumnos)
     {
-        //
+        $alumnos->delete();
+        return redirect()->route('alumnos.index');
     }
 }
