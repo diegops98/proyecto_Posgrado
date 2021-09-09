@@ -17,15 +17,15 @@
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
 </head>
 
-<body>
-<div id="app">
+<body style="background-image:url({{url('img/home_itsta_slider_bg.png')}})">
+<div id="app" >
     <section class="section">
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="login-brand">
                         <img src="{{ asset('img/logoits.png') }}" alt="logo" width="100"
-                             class="shadow-light">
+                             class="shadow-light" style="background: #fff;">
                     </div>
                     @yield('content')
                     <div class="simple-footer">

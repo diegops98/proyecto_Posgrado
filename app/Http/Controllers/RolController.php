@@ -51,7 +51,7 @@ class RolController extends Controller
     {
         $this->validate($request, ['name' => 'required', 'permission' => 'required']);
         $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permisson'));
+        $role->syncPermissions($request->input('permission'));
         //se redirige al index
         return redirect()->route('roles.index');
     }
