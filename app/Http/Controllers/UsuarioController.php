@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -45,7 +47,7 @@ class UsuarioController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-pasword',
+            'password' => 'required|same:confirm-password',
             'roles' => 'required'
         ]);
         $input = $request->all();
@@ -92,8 +94,8 @@ class UsuarioController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email' . $id,
-            'password' => 'same:confirm-pasword',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
         $input = $request->all();
