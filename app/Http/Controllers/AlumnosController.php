@@ -13,6 +13,7 @@ class AlumnosController extends Controller
         $this->middleware('permission:crear-alumnos',['only'=>['create', 'store']]);
         $this->middleware('permission:editar-alumnos',['only'=>['edit', 'update']]);
         $this->middleware('permission:borrar-alumnos',['only'=>['destroy']]);
+
     }
 
     /**
@@ -22,8 +23,8 @@ class AlumnosController extends Controller
      */
     public function index()
     {
-        $alumn = Alumnos::paginate(5);
-        return view('alumnos.index', compact('alumn'));
+        $alumnos = Alumnos::paginate(5);
+        return view('alumnos.index', compact('alumnos'));
 
     }
 
@@ -46,10 +47,15 @@ class AlumnosController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'titulo' => 'require',
-            'contenido' => 'require'
+            'titulo' => 'required',
+            'nombre'=>'required',
+            'apellidos'=>'required',
+            'nControl'=>'required|unique:alumnos',
+            'telefono'=>'required'
         ]);
-        Blog::create($request->all());
+        $request['avance'] = 0;
+        Alumnos::create($request->all());
+
         return redirect()->route('alumnos.index');
     }
 
@@ -85,8 +91,11 @@ class AlumnosController extends Controller
     public function update(Request $request, Alumnos $alumnos)
     {
         request()->validate([
-            'titulo' => 'require',
-            'contenido' => 'require'
+            'titulo' => 'required',
+            'nombre'=>'required',
+            'apellidos'=>'required',
+            'nControl'=>'required|unique:alumnos',
+            'telefono'=>'required'
         ]);
         $alumnos->update($request->all());
         return redirect()->route('alumnos.index');
