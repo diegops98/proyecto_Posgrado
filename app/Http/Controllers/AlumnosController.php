@@ -131,9 +131,18 @@ class AlumnosController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alumnos $alumnos)
+    public function destroy(Request $request)
     {
-        $alumnos->delete();
-        return redirect()->route('alumnos.index');
+        $alumno = Alumnos::find($request->alumnoId);
+
+        if ($alumno != null) {
+
+            if ($alumno->delete()) {
+                return redirect()->route('alumnos.index');
+            }
+
+        }
+
+        return redirect()->route('alumnos.index');//Agregar mensaje de error
     }
 }

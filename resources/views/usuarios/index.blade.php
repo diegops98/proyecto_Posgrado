@@ -41,6 +41,9 @@
                                             {!! Form::submit('Borrar',['class'=>'btn btn-danger' ]) !!}
                                             {!! Form::close() !!}
 
+
+
+
                                         </td>
                                     </tr>
                                 @endforeach

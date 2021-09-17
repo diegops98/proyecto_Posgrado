@@ -43,6 +43,7 @@
 
                                                 @can('borrar-alumnos')
                                                     {!! Form::open(['method'=>'DELETE','route'=>['alumnos.destroy',$alumno->id],'style'=>'display:inline']) !!}
+                                                    {!! Form::hidden('alumnoId', $value = $alumno->id) !!}
                                                     {!! Form::submit('Borrar',['class'=>'btn btn-danger']) !!}
                                                     {!! Form::close() !!}
                                                 @endcan
