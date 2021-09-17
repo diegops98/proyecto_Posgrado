@@ -34,18 +34,19 @@
                                         <td>{{$alumno->titulo}}</td>
                                         <td>{{$alumno->telefono}}</td>
                                         <td>
-                                            <form action="{{ route('alumnos.destroy', $alumno->id) }}" method="POST">
+
                                                 @can('editar-alumnos')
-                                                    <a class="btn btn-info"
-                                                       href="{{ route('alumnos.edit', $alumno->id) }}">Editar</a>
+                                                <a class="btn btn-info" href="{{route('alumnos.edit', $alumno->id)}}">Editar</a>
                                                 @endcan
 
                                                 @csrf
-                                                @method('DELETE')
+
                                                 @can('borrar-alumnos')
-                                                    <button type="submit" class="btn btn-danger">Borrar</button>
+                                                    {!! Form::open(['method'=>'DELETE','route'=>['alumnos.destroy',$alumno->id],'style'=>'display:inline']) !!}
+                                                    {!! Form::submit('Borrar',['class'=>'btn btn-danger']) !!}
+                                                    {!! Form::close() !!}
                                                 @endcan
-                                            </form>
+                                            <!--</form>-->
                                         </td>
                                     </tr>
                                 @endforeach

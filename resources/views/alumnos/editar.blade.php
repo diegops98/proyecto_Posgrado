@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Edicion de datos del alumno</h3>
+            <h3 class="page__heading">Edicion del alumno</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -22,25 +22,42 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('alumnos.store') }}"  method="POST">
-                                @csrf
-                                <div class="row">
-                                    <!--Formulario nuevo alumno-->
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label for="titulo">Titulo</label>
-                                            <input type="text" name="titulo" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-cotrol" name="contenido" style="height: 100px"></textarea>
-                                            <label for="contenido">Contenido</label>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                {!! Form::model($alumnos,['route' => ['alumnos.update',$alumnos->id],'method'=>'PUT'] ) !!}
+                            <div class="row">
+                                <!--Formulario nuevo alumno-->
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre:</label>
+                                        {!! Form::text('nombre', null, array('class'=>'form-control')) !!}
                                     </div>
                                 </div>
-                            </form>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="apellidos">Apellidos:</label>
+                                        {!! Form::text('apellidos', null, array('class'=>'form-control')) !!}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="nControl">Numero de control:</label>
+                                        {!! Form::text('nControl', null, array('class'=>'form-control')) !!}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="titulo">Titulo proyecto:</label>
+                                        {!! Form::text('titulo', null, array('class'=>'form-control')) !!}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="telefono">Numero telefonico:</label>
+                                        {!! Form::number('telefono', null, array('class'=>'form-control')) !!}
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                            {!! Form::close() !!}
                         </div>
                     </div>
                 </div>
