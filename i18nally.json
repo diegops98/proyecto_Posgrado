@@ -1,12 +1,12 @@
 {
-  "version" : "1.0",
+  "version" : "1.1",
   "profiles" : [ {
     "id" : "b6f566e9-bd49-40be-89aa-edccc6655f57",
     "name" : "Laravel (PHP, BLADE)",
     "keyNamingPattern" : "SNAKE_CASE_PATTERN",
     "sink" : {
       "id" : "99c30efd-fd5d-45f4-84ec-b82aa2d57e33",
-      "type" : "symfony",
+      "type" : "namespaced",
       "translationsDirectory" : "$PROJECT_DIR$/resources/lang",
       "fileType" : "php",
       "defaultLocale" : "en",
@@ -20,8 +20,7 @@
       "type" : "php",
       "scopeName" : "i18n Ally: Laravel/PHP source",
       "scopePattern" : "file[proyecto_Posgrado]:app//*&&!file[proyecto_Posgrado]:app/Broadcasting//*&&!file[proyecto_Posgrado]:app/Console//*&&!file[proyecto_Posgrado]:app/Events//*&&!file[proyecto_Posgrado]:app/Exceptions//*&&!file[proyecto_Posgrado]:app/Models//*&&!file[proyecto_Posgrado]:app/Providers//*",
-      "functionName" : "trans",
-      "argumentsTemplate" : "'%namespace%.%key%', %map%",
+      "replacementTemplate" : "trans('%namespace%.%key%', %map%)",
       "skipDefaultNamespace" : false,
       "sprintfMode" : false
     }, {
@@ -29,8 +28,7 @@
       "type" : "blade",
       "scopeName" : "i18n Ally: Laravel/Blade templates",
       "scopePattern" : "file[proyecto_Posgrado]:resources/views//*",
-      "functionName" : "trans",
-      "argumentsTemplate" : "'%namespace%.%key%', %map%",
+      "replacementTemplate" : "trans('%namespace%.%key%', %map%)",
       "inlineTagNames" : [ "a", "abbr", "acronym", "b", "bdi", "bdo", "big", "br", "cite", "code", "data", "del", "dfn", "em", "i", "img", "input", "ins", "kbd", "label", "mark", "meter", "output", "progress", "q", "ruby", "s", "samp", "slot", "small", "span", "strong", "sub", "sup", "time", "u", "tt", "var", "wbr" ],
       "translatableAttributeNames" : [ "title", "alt", "placeholder", "label", "aria-label" ],
       "skipDefaultNamespace" : false
@@ -43,6 +41,5 @@
     "unignoredFunctionNames" : [ ],
     "unignoredFunctionArguments" : { },
     "ignoredArrayKeys" : [ ]
-  },
-  "skipFrameWorkDetection" : false
+  }
 }

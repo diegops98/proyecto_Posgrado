@@ -19,8 +19,15 @@ use App\Http\Controllers\AlumnosController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Route::get('menu', function () {
+    return view('carreras.menucarreras');
+});
+
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
